@@ -1,4 +1,4 @@
-Greed Evolved (GE)
+Greed Evolved (GE) http://TradeGreed.com
 ===================
 Distributed under the MIT/X11 software license.
 
