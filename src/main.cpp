@@ -1004,19 +1004,91 @@ int64_t GetProofOfWorkReward(int64_t nFees)
 int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nFees)
 {
     
-    // proof of stake rewards. POS begins at block 2700
-    
-    int64_t nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8);  //default 9% yr
 
-        if(pindexBest->nHeight < 21501)
+    int64_t nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8);
+
+        if(pindexBest->nHeight < 15000)
     {
-        nSubsidy = 99 * COIN;
+        nSubsidy = 1 * COIN;
+    }
+	    else if(pindexBest->nHeight < 15101)
+    {
+        nSubsidy = 1000 * COIN;
+    }
+		else if(pindexBest->nHeight < 16500)
+    {
+        nSubsidy = 1 * COIN;
+    }
+		else if(pindexBest->nHeight < 16551)
+    {
+        nSubsidy = 2000 * COIN;
+    }
+		else if(pindexBest->nHeight < 17500)
+    {
+        nSubsidy = 1 * COIN;
+    }
+		else if(pindexBest->nHeight < 17700)
+    {
+        nSubsidy = 500 * COIN;
+    }
+		else if(pindexBest->nHeight < 19700)
+    {
+        nSubsidy = 1 * COIN;
+    }
+		else if(pindexBest->nHeight < 19750)
+    {
+        nSubsidy = 2000 * COIN;
+    }
+		else if(pindexBest->nHeight < 19950)
+    {
+        nSubsidy = 1 * COIN;
+    }
+		else if(pindexBest->nHeight < 20050)
+    {
+        nSubsidy = 1000 * COIN;
+    }
+		else if(pindexBest->nHeight < 23500)
+    {
+        nSubsidy = 1 * COIN;
+    }
+		else if(pindexBest->nHeight < 23700) 
+    {
+        nSubsidy = 1250 * COIN;
+    }
+		else if(pindexBest->nHeight < 23990)
+    {
+        nSubsidy = 1 * COIN;
+    }
+		else if(pindexBest->nHeight < 24040) 
+    {
+        nSubsidy = 3000 * COIN;
     }
         else
     {
-        nSubsidy = nCoinAge * (10 * CENT) * 33 / (365 * 33 + 8);  //10% yr
-    }    
-    
+		nSubsidy = 1 * COIN;
+    }
+
+		//Bonus Block Overrides
+	    if (pindexBest->nHeight == 15000 ||
+			pindexBest->nHeight == 16000 ||
+			pindexBest->nHeight == 17000 ||
+			pindexBest->nHeight == 18000 ||
+			pindexBest->nHeight == 19000 ||
+			pindexBest->nHeight == 20000 ||
+			pindexBest->nHeight == 21000 ||
+			pindexBest->nHeight == 22000 ||
+			pindexBest->nHeight == 23000 ||
+			pindexBest->nHeight == 24000 ||
+			pindexBest->nHeight == 25000 ||
+			pindexBest->nHeight == 26000 ||
+			pindexBest->nHeight == 27000 ||
+			pindexBest->nHeight == 28000 ||
+			pindexBest->nHeight == 29000 ||
+			pindexBest->nHeight == 30000
+			)
+	{
+			nSubsidy = 25000 * COIN;	
+	}
 
     if (fDebug && GetBoolArg("-printcreation"))
         printf("GetProofOfStakeReward(): create=%s nCoinAge=%"PRId64"\n", FormatMoney(nSubsidy).c_str(), nCoinAge);
